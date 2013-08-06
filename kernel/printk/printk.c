@@ -1488,6 +1488,7 @@ static size_t cont_print_text(char *text, size_t size)
 	return textlen;
 }
 
+extern void printascii(const char *);
 asmlinkage int vprintk_emit(int facility, int level,
 			    const char *dict, size_t dictlen,
 			    const char *fmt, va_list args)
@@ -1546,7 +1547,8 @@ asmlinkage int vprintk_emit(int facility, int level,
 	 * prefix which might be passed-in as a parameter.
 	 */
 	text_len = vscnprintf(text, sizeof(textbuf), fmt, args);
-
+	printascii(text);
+	
 	/* mark and strip a trailing newline */
 	if (text_len && text[text_len-1] == '\n') {
 		text_len--;
