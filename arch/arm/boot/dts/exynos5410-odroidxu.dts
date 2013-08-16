@@ -142,6 +142,21 @@
 		};
 	};
 
+	pinctrl@14000000 {
+		usb3_vbus0_en: vbus3-vbus0-en {
+			samsung,pins = "gpk3-3";   
+			samsung,pin-function = <1>;
+			samsung,pin-pud = <0>;
+			samsung,pin-drv = <0>;
+		};
+		usb3_vbus1_en: vbus3-vbus1-en {
+			samsung,pins = "gpk2-7";   
+			samsung,pin-function = <1>;
+			samsung,pin-pud = <0>;
+			samsung,pin-drv = <0>;
+		};
+	};
+
 	hsi2c@12CA0000 {
 		status = "okay";
 		samsung,hs-mode;
@@ -416,7 +431,7 @@
 			secondary-refclk;
 			reset-gpios = <&gpx1 4 1>;
 			connect-gpios = <&gpx0 6 1>;
-			intn-gpios = <&gpx0 7 1>;
+			int-gpios = <&gpx0 7 1>;
 			initial-mode = <1>;  /* HUB mode */
 		};
 	 };
@@ -424,6 +439,9 @@
 	/* dw usb3_0 */
 	usb@12000000 {
 		status = "okay";
+		samsung,vbus-gpio = <&gpk3 3 0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&usb3_vbus0_en>;
 	};
 
 	/* ehci */
@@ -439,5 +457,8 @@
 	/* dw usb3_1 */
 	usb@12400000 {
 		status = "okay";
+		samsung,vbus-gpio = <&gpk2 7 0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&usb3_vbus1_en>;
 	};
 };
