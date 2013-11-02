@@ -868,3 +868,10 @@ config EXYNOS5250_ABB_WA
 	default y
 	help
 	 Add W/A to fix ARM/INT ABB errata in EVT0
+
+config ODROID_X_LCD_PINS_DISABLE
+        bool "Disable LCD pins on the ODroid 50pin connector"
+        depends on BOARD_ODROID_X || BOARD_ODROID_X2 
+        default n
+        help
+          Enable the LCD signals on the 50-pin connector on ODroid X and X2

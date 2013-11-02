@@ -199,6 +199,13 @@ config S3C_DEV_HWMON
 	help
 	    Compile in platform device definitions for HWMON
 
+config S3C_DEV_I2C_RATE
+        int "default i2c rate in kHz"
+        default 400
+        help
+          Set the default i2c rate in kHz. The actual rate will vary
+          depending on clock precision.
+
 config S3C_DEV_I2C1
 	bool
 	help
